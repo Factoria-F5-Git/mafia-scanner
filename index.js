@@ -47,7 +47,7 @@ app.get('/prisiones/:id/prisioneros', function (req, res) {
     const prisioneros = prisionesDB
                             .getById(req.params.id)
                             .prisioneros
-                            .map(idPrisioner => mafiososDB.getById(idPrisioner))
+                            .map(idPrisionero => mafiososDB.getById(idPrisionero))
     res.send(prisioneros);
   })
 
