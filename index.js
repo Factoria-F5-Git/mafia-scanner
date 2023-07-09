@@ -1,15 +1,13 @@
 import express from 'express';
-import bodyParser from 'body-parser';
 import { MafiososRepository } from './mafiososRepository.js';
 import { PrisionesRepository } from './prisionesRepository.js';
 
-
 const app = express()
+app.use(express.json())
+
 const mafiososRepository = new MafiososRepository();
 const prisionesRepository = new PrisionesRepository();
 
-app.use(bodyParser.urlencoded({ extended: false }))
-app.use(bodyParser.json())
 
 /*
     Code here
