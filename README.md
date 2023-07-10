@@ -16,4 +16,7 @@ npm install
 npm start
 ```
 
+Para ejecutar los tests `npm test`
+Puedes tambien bajarte el postman `https://www.postman.com › downloads` y alli probar la API
+
 Y, ¡listos!
