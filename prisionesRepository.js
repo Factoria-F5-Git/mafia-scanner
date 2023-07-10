@@ -1,14 +1,7 @@
+import prisionesData from './prisiones.json'
+
 export class PrisionesRepository {
-    prisiones = [{
-        id: 1,
-        prisioneros: []
-    },{
-        id: 2,
-        prisioneros: [3]
-    },{
-        id: 3,
-        prisioneros: []
-    }]
+    prisiones = prisionesData
 
     obtenerTodos() {
         return this.prisiones
@@ -18,7 +11,9 @@ export class PrisionesRepository {
         return this.prisiones.find(prision => prision.id == id);
     }
 
-    encarcelar(idPresion, idMafioso) {
-        this.obtenerPorId(idPresion).prisioneros.push(idMafioso);
+    encarcelar(idPrision, idMafioso) {
+        const prision = this.obtenerPorId(idPrision)
+        prision.prisioneros.push(Number(idMafioso));
+        return this.prisiones
     }
 }
