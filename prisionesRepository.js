@@ -1,4 +1,4 @@
-import prisionesData from './prisiones.json'
+import prisionesData from './prisiones.json' assert { type: "json" };
 
 export class PrisionesRepository {
     prisiones = prisionesData

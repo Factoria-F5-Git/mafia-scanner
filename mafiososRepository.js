@@ -1,4 +1,4 @@
-import mafiososData from './mafiosos.json'
+import mafiososData from './mafiosos.json' assert { type: "json" };
 
 export class MafiososRepository {
     ultimaId = 4;
