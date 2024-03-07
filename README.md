@@ -16,4 +16,9 @@ npm install
 npm start
 ```
 
+Para ejecutar los test, usa el commando:
+```
+npm run tests
+```
+
 Y, ¡listos!
