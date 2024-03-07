@@ -40,16 +40,21 @@ describe('Mafiosos and prisiones endpoint', () => {
         const nuevoMafioso = { nombre: "macaco", estado: "Busca y captura", edad: 32, descripcion: "Siempre lleva una gorra negra" };
         const res = await requestWithSupertest.post('/mafiosos')
             .send(nuevoMafioso)
-        expect(res.status).toEqual(200);
+        expect(res.status).toEqual(201);
         expect(res.body).toEqual({ id: 5, ...nuevoMafioso })
     })
 
     it('PUT modifica un mafioso y devuelve el id', async () => {
-        const actualizarMafioso = { nombre: "Jonny Pepperonni", estado: "Busca y captura", edad: 37, descripcion: "Líder de la mafia del chorizo aunque se rumorea que le gusta mas la mortadela." }
-        const res = await requestWithSupertest.put('/mafiosos/3')
-            .send()
+        const actualizarMafioso = { estado: "Busca y captura" }
+        const res = await requestWithSupertest.put('/mafiosos/3').send(actualizarMafioso)
         expect(res.status).toEqual(200);
-        expect(res.body).toEqual({ id: 3 })
+        expect(res.body).toEqual({
+            "id": 3,
+            "nombre": "Jonny Pepperonni",
+            "estado": "Busca y captura",
+            "edad": 37,
+            "descripcion": "Líder de la mafia del chorizo aunque se rumorea que le gusta mas la mortadela."
+        })
     })
 
     it('DELETE elimina el mafioso con el id de parametro en la url', async () => {

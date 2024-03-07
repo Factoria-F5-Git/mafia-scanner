@@ -17,11 +17,17 @@ app.get('/mafiosos/:id', function (req, res) {
 })
 
 app.post('/mafiosos', function (req, res) {
-    res.send(mafiososRepository.crear(req.body.nombre, req.body.estado, req.body.edad, req.body.descripcion))
+    res.status(201).json(mafiososRepository.crear(req.body.nombre, req.body.estado, req.body.edad, req.body.descripcion))
 })
 
 app.put('/mafiosos/:id', function (req, res) {
-    res.send(mafiososRepository.actualizar(req.params.id, req.body.nombre, req.body.estado, req.body.edad, req.body.descripcion))
+    const mafioso = mafiososRepository.obtenerPorId(req.params.id)
+    const nombre = req.body.nombre || mafioso.nombre
+    const estado = req.body.estado || mafioso.estado
+    const edad = req.body.edad || mafioso.edad
+    const descripcion = req.body.descripcion || mafioso.descripcion
+    res.send(mafiososRepository.actualizar(req.params.id, nombre, estado, edad, descripcion))
+    res.send()
 })
 
 app.delete('/mafiosos/:id', function (req, res) {
