@@ -1,5 +1,6 @@
 import { server } from './index.js';
 import supertest from 'supertest';
+import mafiososData from './mafiosos.json'
 const requestWithSupertest = supertest(server);
 
 // test 0 - GET test endpoint devuelve 404
@@ -19,4 +20,22 @@ describe('Mafiosos and prisiones endpoint', () => {
         expect(res.status).toEqual(404);
     })
 
+    it('GET mafiosos devuelve la lista de mafiosos', async () => {
+        const res = await requestWithSupertest.get('/mafiosos');
+        expect(res.status).toEqual(200);
+        expect(res.body).toEqual(mafiososData);
+    })
+
+    it('GET mafiosos:id devuelve un mafioso en particular', async () => {
+        const res = await requestWithSupertest.get('/mafiosos/2');
+        expect(res.status).toEqual(200);
+        expect(res.body).toEqual(mafiososData[1])
+    })
+
+    it('POST mafiosos un nuevo mafioso, devuelve el mafioso añadido', async () => {
+        const nuevoMafioso = {"nombre": "Al Capone", "estado": "Muerto","edad": 43, "descripcion": "Mafioso americano"}
+        const res = await requestWithSupertest.post('/mafiosos').send(nuevoMafioso);
+        expect(res.status).toEqual(201);
+        expect(res.body).toEqual({id: 4, ...nuevoMafioso});
+    })
 });
