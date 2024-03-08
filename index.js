@@ -27,7 +27,6 @@ app.put('/mafiosos/:id', function (req, res) {
     const edad = req.body.edad || mafioso.edad
     const descripcion = req.body.descripcion || mafioso.descripcion
     res.send(mafiososRepository.actualizar(req.params.id, nombre, estado, edad, descripcion))
-    res.send()
 })
 
 app.delete('/mafiosos/:id', function (req, res) {
